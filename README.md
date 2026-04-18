@@ -13,7 +13,7 @@ NeonAuth is an industry-level, highly scalable authentication system built with 
 - **Standardized API Structure**: A complete RESTful interface generating predictable, type-safe API responses with distinct status codes.
 
 ## Authentication Flow Diagram
-![Authentication Flow Diagram](../Diagram/loginauth.drawio.png)
+![Authentication Flow Diagram](./Diagram/loginauth.drawio.png)
 
 ## 📦 Dependencies & Versions
 - **Next.js:** `^16.2.4` (App router & server-side API support)
@@ -59,6 +59,7 @@ npm run dev
 ## 📂 File Structure
 ```text
 neon-auth/
+├── Diagram/                  <- Architecture and sequence flow diagrams
 ├── prisma/
 │   └── schema.prisma         <- Database entities & relationships
 ├── public/                   <- Public static assets
@@ -73,10 +74,16 @@ neon-auth/
 │   │   │       ├── refresh-token/
 │   │   │       ├── register/
 │   │   │       └── reset-password/
+│   │   ├── dashboard/        <- Protected user dashboard
+│   │   ├── forgot-password/  <- Frontend forgot password page
+│   │   ├── login/            <- Frontend login page
+│   │   ├── register/         <- Frontend registration page
+│   │   ├── reset-password/   <- Frontend reset password page
 │   │   ├── layout.tsx
 │   │   └── page.tsx          <- Frontend Main landing 
 │   └── lib/
 │       ├── auth-utils.ts     <- Hashing and JWT verification utilities
+│       ├── email.ts          <- SMTP email sending and connection pool
 │       └── prisma.ts         <- Prisma active singleton instance 
 ├── .env                      <- Secret environmental keys
 ├── neonauth_postman_collection.json  <- Auto-generated API Postman workspace
