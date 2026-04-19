@@ -4,6 +4,7 @@
 NeonAuth is an industry-level, highly scalable authentication system built with Next.js (App Router), Prisma ORM, and Neon PostgreSQL. This system ensures enterprise-grade security features like JWT token rotation, HTTP-only cookies, robust account limit controls (device tracking), brute-force locking mechanisms, and UTC-based data timestamps. 
 
 ## ✨ Features
+- **Two-Step Email Registration**: Enhanced security flow where users verify their email first before setting a password.
 - **JWT Authentication Flow**: Utilizes distinct short-lived Access Tokens and long-lived Refresh Tokens with auto-rotation.
 - **Secure Handling**: Access tokens are kept in memory and Refresh tokens are secured via HTTP-only strict cookies.
 - **Session Management**: A strictly enforced maximum limit of 2 concurrent devices per user. The system automatically evicts the oldest active session internally.
@@ -72,7 +73,10 @@ neon-auth/
 │   │   │       ├── logout/
 │   │   │       ├── me/
 │   │   │       ├── refresh-token/
-│   │   │       ├── register/
+│   │   │       ├── register/         <- Registration Flow
+│   │   │       │   ├── route.ts      <- Step 1: Request Link
+│   │   │       │   ├── verify/       <- Step 2: Token Validation
+│   │   │       │   └── complete/     <- Step 3: Finalize Account
 │   │   │       └── reset-password/
 │   │   ├── dashboard/        <- Protected user dashboard
 │   │   ├── forgot-password/  <- Frontend forgot password page
@@ -121,7 +125,12 @@ Password recovery and isolated external token bindings.
 
 ## 🌐 API Endpoints Reference
 (See the imported Postman workspace `neonauth_postman_collection.json` to directly interact with inputs)
-- `POST /api/auth/register` (Registers a user)
+### Registration Flow
+- `POST /api/auth/register` (Initiates registration, sends verification link)
+- `GET  /api/auth/register/verify` (Validates registration token)
+- `POST /api/auth/register/complete` (Finalizes account with password)
+
+### Core Auth
 - `POST /api/auth/login` (Auth validation & Cookie setup)
 - `POST /api/auth/refresh-token` (Rotates Access / Refresh pairs directly via Cookie)
 - `POST /api/auth/logout` (Destroys Sessions natively)
