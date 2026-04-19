@@ -1,7 +1,7 @@
 # Neon Auth System
 
-[Vercel](https://neon-auth-bice.vercel.app)
-[Postman Collection]([https://neon-auth-bice.vercel.app](https://thilina-bandara623-4522660.postman.co/workspace/45163ee3-5e41-4d89-8df2-19d5855b4765/collection/53785223-1ec3d44f-fe66-4c12-b92f-891331409730?action=share&source=copy-link&creator=53785223))
+Vercel - (https://neon-auth-bice.vercel.app)
+Postman Collection - [Postman Collection](https://thilina-bandara623-4522660.postman.co/workspace/45163ee3-5e41-4d89-8df2-19d5855b4765/collection/53785223-1ec3d44f-fe66-4c12-b92f-891331409730?action=share&source=copy-link&creator=53785223)
 
 ## 🚀 Introduction
 NeonAuth is an industry-level, highly scalable authentication system built with Next.js (App Router), Prisma ORM, and Neon PostgreSQL. This system ensures enterprise-grade security features like JWT token rotation, HTTP-only cookies, robust account limit controls (device tracking), brute-force locking mechanisms, and UTC-based data timestamps. 
