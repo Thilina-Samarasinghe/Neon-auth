@@ -10,6 +10,15 @@ export async function POST(req: Request) {
       return NextResponse.json({ success: false, message: 'Missing required fields' }, { status: 400 });
     }
 
+    // Password validation: at least 6 characters, one capital letter, one symbol
+    const passwordRegex = /^(?=.*[A-Z])(?=.*[!@#$%^&*(),.?":{}|<>])(?=.{6,})/;
+    if (!passwordRegex.test(newPassword)) {
+      return NextResponse.json({ 
+        success: false, 
+        message: 'Password must be at least 6 characters long and contain at least one uppercase letter and one symbol.' 
+      }, { status: 400 });
+    }
+
     const hashedToken = hashToken(token);
 
     const resetTokenRecord = await prisma.verificationToken.findFirst({

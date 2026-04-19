@@ -22,14 +22,22 @@ function ResetPasswordForm() {
       setError("Invalid reset link. Missing email or token.");
       return;
     }
+    setError("");
+    setMessage("");
+
+    // Validate password
+    const passwordRegex = /^(?=.*[A-Z])(?=.*[!@#$%^&*(),.?":{}|<>])(?=.{6,})/;
+    if (!passwordRegex.test(newPassword)) {
+      setError("Password must be at least 6 characters and contain one capital letter and one symbol.");
+      return;
+    }
+
     if (newPassword !== confirmPassword) {
       setError("Passwords do not match.");
       return;
     }
 
     setLoading(true);
-    setError("");
-    setMessage("");
 
     try {
       const res = await fetch("/api/auth/reset-password", {

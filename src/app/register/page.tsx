@@ -77,13 +77,21 @@ function RegisterForm() {
 
   const handlePasswordSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setError("");
+
+    // Validate password
+    const passwordRegex = /^(?=.*[A-Z])(?=.*[!@#$%^&*(),.?":{}|<>])(?=.{6,})/;
+    if (!passwordRegex.test(password)) {
+      setError("Password must be at least 6 characters and contain one capital letter and one symbol.");
+      return;
+    }
+
     if (password !== confirmPassword) {
       setError("Passwords do not match");
       return;
     }
 
     setLoading(true);
-    setError("");
 
     try {
       const res = await fetch("/api/auth/register/complete", {
