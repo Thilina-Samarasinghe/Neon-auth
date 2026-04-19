@@ -16,6 +16,9 @@ NeonAuth is an industry-level, highly scalable authentication system built with 
 ## Authentication Flow Diagram
 ![Authentication Flow Diagram](./Diagram/loginauth.drawio.png)
 
+## Login & Session Creation Flow
+![Login & Session Creation Diagram](./Diagram/Login&SessionCreation.png)
+
 ## 📦 Dependencies & Versions
 - **Next.js:** `^16.2.4` (App router & server-side API support)
 - **React:** `19.2.4` 
