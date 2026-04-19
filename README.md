@@ -77,7 +77,8 @@ neon-auth/
 │   │   │       │   ├── route.ts      <- Step 1: Request Link
 │   │   │       │   ├── verify/       <- Step 2: Token Validation
 │   │   │       │   └── complete/     <- Step 3: Finalize Account
-│   │   │       └── reset-password/
+│   │   │       ├── reset-password/
+│   │   │       └── sessions/         <- Active Session Tracking
 │   │   ├── dashboard/        <- Protected user dashboard
 │   │   ├── forgot-password/  <- Frontend forgot password page
 │   │   ├── login/            <- Frontend login page
@@ -136,4 +137,5 @@ Password recovery and isolated external token bindings.
 - `POST /api/auth/logout` (Destroys Sessions natively)
 - `POST /api/auth/forgot-password` (Issues the recovery email verification tokens)
 - `POST /api/auth/reset-password` (Consumes recovery tokens & generates new hashes)
+- `GET  /api/auth/sessions` (Lists active user sessions to verify limits)
 - `GET  /api/auth/me` (Protected status route utilizing Auth Header Bearer strings)

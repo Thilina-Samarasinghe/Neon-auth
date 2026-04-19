@@ -236,6 +236,54 @@
           }
         }
       ]
+    },
+    {
+      "name": "Session Management & Limits",
+      "item": [
+        {
+          "name": "List Active Sessions",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{accessToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/sessions",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "sessions"
+              ]
+            },
+            "description": "Returns all active sessions for the current user. Use this to verify that the oldest session is removed when you login for the 3rd time (since the limit is 2)."
+          }
+        },
+        {
+          "name": "Test Session Limit Proceedure",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/sessions",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "sessions"
+              ]
+            },
+            "description": "**How to test the 2-session limit:**\n\n1. **Login 1st time**: Call `Login User`. Check `List Active Sessions` (Total: 1).\n2. **Login 2nd time**: Call `Login User` again. Check `List Active Sessions` (Total: 2).\n3. **Login 3rd time**: Call `Login User` again. Check `List Active Sessions`.\n\n**Expected Result:**\nThe total sessions will remain **2**. The session with the oldest `createdAt` timestamp from step 1 will have been automatically deleted and replaced by the newest login."
+          }
+        }
+      ]
     }
   ],
   "variable": [
